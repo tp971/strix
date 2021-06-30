@@ -1,0 +1,19 @@
+INFO {
+  TITLE:       "LTL -> DBA  -  Formula E From LtlNfBa Paper"
+  DESCRIPTION: "Conversion of LTL to Deterministic Buchi Automaton"
+  SEMANTICS:   Mealy
+  TARGET:      Mealy
+}
+
+MAIN {
+  INPUTS {
+    p_0;
+  }
+  OUTPUTS {
+    acc;
+  }
+  GUARANTEE {
+    ((F (p_0)) <-> (G (F (acc))));
+  }
+}
+

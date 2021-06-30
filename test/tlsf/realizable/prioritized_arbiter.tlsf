@@ -1,0 +1,28 @@
+INFO {
+  TITLE:       "Prioritized Arbiter"
+  DESCRIPTION: "Parameterized Arbiter with a unique master process which has priority angainst others"
+  SEMANTICS:   Mealy
+  TARGET:      Mealy
+}
+
+MAIN {
+  INPUTS {
+    r_m;
+    r_0;
+  }
+  OUTPUTS {
+    g_m;
+    g_0;
+  }
+  ASSUME {
+    (G (F (! (r_m))));
+  }
+  ASSERT {
+    (! ((g_m) && (g_0)));
+  }
+  GUARANTEE {
+    (G ((r_0) -> (F (g_0))));
+    (G ((r_m) -> (X ((! (g_0)) U (g_m)))));
+  }
+}
+

@@ -1,0 +1,21 @@
+INFO {
+  TITLE:       "Lily Demo V12"
+  DESCRIPTION: "One of the Lily demo files"
+  SEMANTICS:   Mealy
+  TARGET:      Mealy
+}
+
+MAIN {
+  INPUTS {
+    go;
+    req;
+  }
+  OUTPUTS {
+    ack;
+    grant;
+  }
+  GUARANTEE {
+    (((G (! (grant))) || (G ((req) -> (F (ack))))) || (G ((go) -> (F (grant)))));
+  }
+}
+

@@ -1,0 +1,19 @@
+INFO {
+  TITLE:       "biconditional 8"
+  DESCRIPTION: "formula with biconditional"
+  SEMANTICS:   Mealy
+  TARGET:      Mealy
+}
+MAIN {
+    INPUTS {
+        i1;
+    }
+    OUTPUTS {
+        o1;
+        o2;
+        o3;
+    }
+    GUARANTEES {
+        (((G F i1 -> G F o1) && (G F o1 -> G F o2)) <-> ((G F o1 -> G F o3) && (G F o3)));
+    }
+}

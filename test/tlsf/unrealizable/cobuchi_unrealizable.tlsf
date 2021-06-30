@@ -1,0 +1,19 @@
+INFO {
+  TITLE:       "cobuchi unrealizable"
+  DESCRIPTION: "unrealizable formula with co-Buchi game"
+  SEMANTICS:   Mealy
+  TARGET:      Mealy
+}
+
+MAIN {
+  INPUTS {
+    r0;
+  }
+  OUTPUTS {
+    g0;
+  }
+  GUARANTEE {
+    (F ((r0) && (G (g0))));
+  }
+}
+

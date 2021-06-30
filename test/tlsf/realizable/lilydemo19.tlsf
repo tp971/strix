@@ -1,0 +1,28 @@
+INFO {
+  TITLE:       "Lily Demo V19"
+  DESCRIPTION: "One of the Lily demo files"
+  SEMANTICS:   Mealy
+  TARGET:      Mealy
+}
+
+MAIN {
+  INPUTS {
+    ec;
+    ets;
+  }
+  OUTPUTS {
+    fl;
+    hl;
+  }
+  ASSUME {
+    (G (F (ets)));
+  }
+  ASSERT {
+    ((hl) -> ((hl) U (ets)));
+    ((fl) -> ((fl) U (ets)));
+    (! ((hl) && (fl)));
+    ((ec) -> (F (fl)));
+    (F (hl));
+  }
+}
+

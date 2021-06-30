@@ -1,0 +1,32 @@
+INFO {
+  TITLE:       "Lily Demo V22"
+  DESCRIPTION: "One of the Lily demo files"
+  SEMANTICS:   Mealy
+  TARGET:      Mealy
+}
+
+MAIN {
+  INPUTS {
+    ws;
+    goup;
+    godown;
+  }
+  OUTPUTS {
+    ss;
+  }
+  ASSUME {
+    (! (godown));
+    (! (goup));
+    (! (ws));
+    (G (! ((godown) && (goup))));
+    (G (F (! (ws))));
+    (G (((! (ws)) && (ss)) -> (X (! (ws)))));
+    (G ((ws) -> (X ((! (ws)) || (X ((! (ws)) || (X ((! (ws)) || (X (! (ws)))))))))));
+  }
+  ASSERT {
+    (! ((ws) && (X (ss))));
+    ((goup) -> (F (! (ss))));
+    ((godown) -> (F (ss)));
+  }
+}
+

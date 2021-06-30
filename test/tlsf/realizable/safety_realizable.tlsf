@@ -1,0 +1,19 @@
+INFO {
+  TITLE:       "safety realizable"
+  DESCRIPTION: "realizable formula with safety game"
+  SEMANTICS:   Mealy
+  TARGET:      Mealy
+}
+
+MAIN {
+  INPUTS {
+    r0;
+  }
+  OUTPUTS {
+    g0;
+  }
+  GUARANTEE {
+    (G ((r0) -> (g0)));
+  }
+}
+

@@ -1,0 +1,22 @@
+INFO {
+  TITLE:       "Lily Demo V8"
+  DESCRIPTION: "One of the Lily demo files"
+  SEMANTICS:   Mealy
+  TARGET:      Mealy
+}
+
+MAIN {
+  INPUTS {
+    req;
+  }
+  OUTPUTS {
+    grant;
+  }
+  ASSUME {
+    (G (F (req)));
+  }
+  GUARANTEE {
+    (G (F (grant)));
+  }
+}
+

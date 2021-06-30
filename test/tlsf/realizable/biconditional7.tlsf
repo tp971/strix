@@ -1,0 +1,20 @@
+INFO {
+  TITLE:       "biconditional 7"
+  DESCRIPTION: "formula with biconditional"
+  SEMANTICS:   Mealy
+  TARGET:      Mealy
+}
+
+MAIN {
+  INPUTS {
+    i1;
+    i2;
+  }
+  OUTPUTS {
+    o1;
+    o2;
+  }
+  GUARANTEE {
+    (((G F i1) || (F G i2)) <-> ((G F o1) || (F G o2)));
+  }
+}

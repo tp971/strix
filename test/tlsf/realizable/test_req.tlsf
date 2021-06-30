@@ -1,0 +1,21 @@
+INFO {
+  TITLE:       "Test REQUIRE"
+  DESCRIPTION: "Test with REQUIRE block"
+  SEMANTICS:   Mealy
+  TARGET:      Mealy
+}
+
+MAIN {
+  INPUTS {
+    p0;
+  }
+  OUTPUTS {
+    p1;
+  }
+  REQUIRE {
+    p0;
+  }
+  GUARANTEE {
+    p1;
+  }
+}

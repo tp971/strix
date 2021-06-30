@@ -1,0 +1,25 @@
+INFO {
+  TITLE:       "LTL -> DPA  -  Example 11  (Source: Acacia+)"
+  DESCRIPTION: "DPA A with 2 priorities: a word u is accepted by A if the minimal priority seen infinitely often is even"
+  SEMANTICS:   Mealy
+  TARGET:      Mealy
+}
+
+MAIN {
+  INPUTS {
+    c;
+    b;
+    a;
+  }
+  OUTPUTS {
+    p1;
+    p0;
+  }
+  ASSERT {
+    ((p0) <-> (! (p1)));
+  }
+  GUARANTEE {
+    (((G (F ((a) || (b)))) && (G (F ((b) || (c))))) <-> (G (F (p0))));
+  }
+}
+

@@ -1,0 +1,34 @@
+INFO {
+  TITLE:       "Prioritized Arbiter, unrealizable variant 2"
+  DESCRIPTION: "Parameterized Arbiter with a unique master process which has priority angainst others"
+  SEMANTICS:   Mealy
+  TARGET:      Mealy
+}
+
+MAIN {
+  INPUTS {
+    r_m;
+    r_0;
+    r_1;
+  }
+  OUTPUTS {
+    g_m;
+    g_0;
+    g_1;
+  }
+  ASSUME {
+    (G (F (! (r_m))));
+  }
+  ASSERT {
+    (((! (g_0)) && (true)) || ((true) && (! (g_1))));
+    (! ((g_m) && (g_0)));
+    (! ((g_m) && (g_1)));
+    (((r_0) && (X (r_1))) -> (F ((g_0) && (g_1))));
+  }
+  GUARANTEE {
+    (G ((r_0) -> (F (g_0))));
+    (G ((r_1) -> (F (g_1))));
+    (G ((r_m) -> (X (((! (g_0)) && (! (g_1))) U (g_m)))));
+  }
+}
+

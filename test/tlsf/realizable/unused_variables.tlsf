@@ -1,0 +1,21 @@
+INFO {
+  TITLE:       "unused variables"
+  DESCRIPTION: "formula not using all inputs and outputs"
+  SEMANTICS:   Mealy
+  TARGET:      Mealy
+}
+
+MAIN {
+  INPUTS {
+    i1;
+    i0;
+  }
+  OUTPUTS {
+    o1;
+    o0;
+  }
+  GUARANTEE {
+    ((i1) -> (o1));
+  }
+}
+

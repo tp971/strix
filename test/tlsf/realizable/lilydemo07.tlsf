@@ -1,0 +1,26 @@
+INFO {
+  TITLE:       "Lily Demo V7"
+  DESCRIPTION: "One of the Lily demo files"
+  SEMANTICS:   Mealy
+  TARGET:      Mealy
+}
+
+MAIN {
+  INPUTS {
+    go;
+    cancel;
+    req;
+  }
+  OUTPUTS {
+    grant;
+  }
+  ASSUME {
+    (G ((cancel) -> (X ((go) || (X (go))))));
+  }
+  ASSERT {
+    ((cancel) -> (X ((! (grant)) U (go))));
+    ((grant) -> (X (! (grant))));
+    ((req) -> (((grant) || (cancel)) || (X (((grant) || (cancel)) || (X (((grant) || (cancel)) || (X ((grant) || (cancel)))))))));
+  }
+}
+

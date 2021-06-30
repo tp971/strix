@@ -1,0 +1,37 @@
+INFO {
+  TITLE:       "Lily Demo V24"
+  DESCRIPTION: "One of the Lily demo files"
+  SEMANTICS:   Mealy
+  TARGET:      Mealy
+}
+
+MAIN {
+  INPUTS {
+    r2b_ack1;
+    r2b_ack0;
+    s2b_req1;
+    s2b_req0;
+  }
+  OUTPUTS {
+    b2r_req1;
+    b2r_req0;
+    b2s_ack1;
+    b2s_ack0;
+  }
+  ASSUME {
+    (! (r2b_ack0));
+    (G ((! (b2r_req0)) -> (X (! (r2b_ack0)))));
+    (G ((b2r_req0) -> (X (F (r2b_ack0)))));
+  }
+  ASSERT {
+    ((r2b_ack0) -> (X (! (b2r_req0))));
+    (((b2r_req0) && (! (r2b_ack0))) -> (X (b2r_req0)));
+    (((b2r_req0) && (X (! (b2r_req0)))) -> (X ((! (b2r_req0)) U ((! (b2r_req0)) && (b2r_req1)))));
+    (((s2b_req0) || (s2b_req1)) -> (X (F ((b2r_req0) || (b2r_req1)))));
+    ((! (b2r_req0)) || (! (b2r_req1)));
+  }
+  GUARANTEE {
+    (! (b2r_req0));
+  }
+}
+

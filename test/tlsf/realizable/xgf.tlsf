@@ -1,0 +1,18 @@
+INFO {
+  TITLE:       "XGF formula"
+  DESCRIPTION: "A formula in the XGF fragment"
+  SEMANTICS:   Mealy
+  TARGET:      Mealy
+}
+
+MAIN {
+  INPUTS {
+    a;
+  }
+  OUTPUTS {
+    b;
+  }
+  GUARANTEE {
+    (X (G (a -> (F b))));
+  }
+}

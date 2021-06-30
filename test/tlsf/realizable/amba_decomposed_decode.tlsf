@@ -1,0 +1,26 @@
+INFO {
+  TITLE:       "Amba AHB - Decomposed - Decode"
+  DESCRIPTION: "Decode component of the decomposed Amba AHB Arbiter"
+  SEMANTICS:   Mealy
+  TARGET:      Mealy
+}
+
+MAIN {
+  INPUTS {
+    HBURST_0;
+    HBURST_1;
+  }
+  OUTPUTS {
+    INCR;
+    BURST4;
+    SINGLE;
+  }
+  ASSERT {
+    (((! (HBURST_0)) && (! (HBURST_1))) -> (SINGLE));
+    (((HBURST_0) && (! (HBURST_1))) -> (BURST4));
+    (((! (HBURST_0)) && (HBURST_1)) -> (INCR));
+    (! ((SINGLE) && ((BURST4) || (INCR))));
+    (! ((BURST4) && (INCR)));
+  }
+}
+

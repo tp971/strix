@@ -1,0 +1,22 @@
+INFO {
+  TITLE:       "true"
+  DESCRIPTION: "formula true"
+  SEMANTICS:   Mealy
+  TARGET:      Mealy
+}
+
+MAIN {
+  INPUTS {
+    r1;
+    r0;
+  }
+  OUTPUTS {
+    g1;
+    g0;
+  }
+  GUARANTEE {
+    ((r0) || (! (r0)));
+    ((g0) || (! (g0)));
+  }
+}
+

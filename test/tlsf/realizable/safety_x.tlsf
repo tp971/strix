@@ -1,0 +1,33 @@
+INFO {
+  TITLE:       "Safety test"
+  DESCRIPTION: "Safety test with X operator"
+  SEMANTICS:   Mealy
+  TARGET:      Mealy
+}
+
+MAIN {
+  INPUTS {
+  }
+  OUTPUTS {
+    a;
+  }
+  GUARANTEE {
+    (!a);
+    X (!a);
+    X X (!a);
+    X X X (!a);
+    X X X X (!a);
+    X X X X X (!a);
+    X X X X X X (!a);
+    X X X X X X X (!a);
+    X X X X X X X X (!a);
+    X X X X X X X X X (!a);
+    X X X X X X X X X X (!a);
+    X X X X X X X X X X X (!a);
+    X X X X X X X X X X X X (!a);
+    X X X X X X X X X X X X X (!a);
+    X X X X X X X X X X X X X X (a);
+  }
+}
+
+

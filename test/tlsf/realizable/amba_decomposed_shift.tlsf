@@ -1,0 +1,21 @@
+INFO {
+  TITLE:       "Amba AHB - Decomposed - Shift"
+  DESCRIPTION: "Shift component of the decomposed Amba AHB Arbiter"
+  SEMANTICS:   Mealy
+  TARGET:      Mealy
+}
+
+MAIN {
+  INPUTS {
+    LOCKED;
+    HREADY;
+  }
+  OUTPUTS {
+    HMASTLOCK;
+  }
+  ASSERT {
+    ((HREADY) -> ((X (HMASTLOCK)) <-> (LOCKED)));
+    ((! (HREADY)) -> ((X (HMASTLOCK)) <-> (HMASTLOCK)));
+  }
+}
+

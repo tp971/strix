@@ -1,0 +1,18 @@
+INFO {
+  TITLE:       "trivially_unrealizable"
+  DESCRIPTION: "unrealizable formula"
+  SEMANTICS:   Mealy
+  TARGET:      Mealy
+}
+
+MAIN {
+  INPUTS {
+    r0;
+  }
+  OUTPUTS {
+    g0;
+  }
+  GUARANTEE {
+    (X r0) <-> g0;
+  }
+}

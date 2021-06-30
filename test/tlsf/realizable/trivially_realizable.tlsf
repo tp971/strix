@@ -1,0 +1,19 @@
+INFO {
+  TITLE:       "trivially realizable"
+  DESCRIPTION: "trivially realizable formula"
+  SEMANTICS:   Mealy
+  TARGET:      Mealy
+}
+
+MAIN {
+  INPUTS {
+    r0;
+  }
+  OUTPUTS {
+    g0;
+  }
+  GUARANTEE {
+    ((r0) -> (g0));
+  }
+}
+

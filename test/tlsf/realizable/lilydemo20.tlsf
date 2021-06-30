@@ -1,0 +1,34 @@
+INFO {
+  TITLE:       "Lily Demo V20"
+  DESCRIPTION: "One of the Lily demo files - Simplified TLC"
+  SEMANTICS:   Mealy
+  TARGET:      Mealy
+}
+
+MAIN {
+  INPUTS {
+    etc;
+    ec;
+  }
+  OUTPUTS {
+    shlr;
+    sflr;
+    sts;
+  }
+  ASSUME {
+    (! (etc));
+    (G (((! (etc)) && (! (sts))) -> (X (! (etc)))));
+    (G ((etc) -> (F (! (etc)))));
+    (G ((sts) -> (X (etc))));
+  }
+  ASSERT {
+    (((shlr) && (X (! (shlr)))) -> (sts));
+    (((sflr) && (X (! (sflr)))) -> (sts));
+    (((! (sflr)) && ((! (etc)) || (! (ec)))) -> (X (sflr)));
+    (((! (shlr)) && ((! (etc)) || (ec))) -> (X (shlr)));
+    ((sflr) || (shlr));
+    ((ec) -> (F (! (sflr))));
+    (F (! (shlr)));
+  }
+}
+

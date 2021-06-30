@@ -1,0 +1,20 @@
+INFO {
+  TITLE:       "double biconditional"
+  DESCRIPTION: "formula with two biconditionals"
+  SEMANTICS:   Mealy
+  TARGET:      Mealy
+}
+MAIN {
+    INPUTS {
+        i1;
+        i2;
+    }
+    OUTPUTS {
+        o1;
+        o2;
+    }
+    GUARANTEES {
+        (((G F i1) <-> (G F o1)) && ((G F i2) <-> (G F o2)));
+    }
+}
+

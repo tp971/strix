@@ -1,0 +1,25 @@
+INFO {
+  TITLE:       "A Parameterized Arbiter"
+  DESCRIPTION: "An arbiter, parameterized in the number of clients"
+  SEMANTICS:   Mealy
+  TARGET:      Mealy
+}
+
+MAIN {
+  INPUTS {
+    r_0;
+    r_1;
+  }
+  OUTPUTS {
+    g_0;
+    g_1;
+  }
+  ASSERT {
+    ((! ((g_0) && (g_1))) || (! ((g_1) && (g_0))));
+  }
+  GUARANTEE {
+    (G ((r_0) -> (F (g_0))));
+    (G ((r_1) -> (F (g_1))));
+  }
+}
+

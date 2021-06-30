@@ -1,0 +1,42 @@
+INFO {
+  TITLE:       "Amba AHB - Decomposed - Arbiter"
+  DESCRIPTION: "Arbiter component of the decomposed Amba AHB Arbiter"
+  SEMANTICS:   Mealy
+  TARGET:      Mealy
+}
+
+MAIN {
+  INPUTS {
+    ALLREADY;
+    HBUSREQ_0;
+    HBUSREQ_1;
+  }
+  OUTPUTS {
+    DECIDE;
+    BUSREQ;
+    HGRANT_0;
+    HGRANT_1;
+  }
+  ASSUME {
+    (G (F (ALLREADY)));
+    (ALLREADY);
+  }
+  ASSERT {
+    (((! (HGRANT_0)) && (true)) || ((true) && (! (HGRANT_1))));
+    ((HGRANT_0) || (HGRANT_1));
+    ((! (ALLREADY)) -> ((X (HGRANT_0)) <-> (HGRANT_0)));
+    ((! (ALLREADY)) -> ((X (HGRANT_1)) <-> (HGRANT_1)));
+    ((HBUSREQ_0) -> (F ((! (HBUSREQ_0)) || (HGRANT_0))));
+    ((HBUSREQ_1) -> (F ((! (HBUSREQ_1)) || (HGRANT_1))));
+    ((HGRANT_0) -> ((BUSREQ) <-> (HBUSREQ_0)));
+    ((HGRANT_1) -> ((BUSREQ) <-> (HBUSREQ_1)));
+    ((! (ALLREADY)) -> (! (DECIDE)));
+    ((DECIDE) <-> ((! ((X (HGRANT_0)) <-> (HGRANT_0))) || (! ((X (HGRANT_1)) <-> (HGRANT_1)))));
+    ((((! (HBUSREQ_0)) && (! (HBUSREQ_1))) && (DECIDE)) -> (X (HGRANT_0)));
+  }
+  GUARANTEE {
+    (! (DECIDE));
+    (HGRANT_0);
+  }
+}
+

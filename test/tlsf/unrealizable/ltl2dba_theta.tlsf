@@ -1,0 +1,21 @@
+INFO {
+  TITLE:       "LTL -> DBA  -  Formula Theta From LtlNfBa Paper"
+  DESCRIPTION: "Conversion of LTL to Deterministic Buchi Automaton"
+  SEMANTICS:   Mealy
+  TARGET:      Mealy
+}
+
+MAIN {
+  INPUTS {
+    r;
+    q;
+    p_0;
+  }
+  OUTPUTS {
+    acc;
+  }
+  GUARANTEE {
+    ((! ((G (F (p_0))) -> (G ((q) -> (F (r)))))) <-> (G (F (acc))));
+  }
+}
+

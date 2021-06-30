@@ -1,0 +1,25 @@
+INFO {
+  TITLE:       "Test unused"
+  DESCRIPTION: "Test with unused variables (realizable)"
+  SEMANTICS:   Mealy
+  TARGET:      Mealy
+}
+
+MAIN {
+  INPUTS {
+    a;
+    b;
+    c;
+    d;
+  }
+  OUTPUTS {
+    e;
+    f;
+    g;
+    h;
+  }
+  GUARANTEE {
+    (a && !b && c && X !c) || (e && !f && g && X !g);
+  }
+}
+

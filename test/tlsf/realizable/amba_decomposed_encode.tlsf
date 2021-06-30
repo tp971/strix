@@ -1,0 +1,30 @@
+INFO {
+  TITLE:       "Amba AHB - Decomposed - Encode"
+  DESCRIPTION: "Encode component of the decomposed Amba AHB Arbiter"
+  SEMANTICS:   Mealy
+  TARGET:      Mealy
+}
+
+MAIN {
+  INPUTS {
+    HREADY;
+    HGRANT_0;
+    HGRANT_1;
+    HGRANT_2;
+  }
+  OUTPUTS {
+    HMASTER_0;
+    HMASTER_1;
+  }
+  ASSUME {
+    (G ((((! (HGRANT_0)) && (! (HGRANT_1))) && (true)) || ((((! (HGRANT_0)) && (true)) || ((true) && (! (HGRANT_1)))) && (! (HGRANT_2)))));
+    (G (((HGRANT_0) || (HGRANT_1)) || (HGRANT_2)));
+  }
+  ASSERT {
+    ((HREADY) -> ((X (((true) && (! (HMASTER_1))) && (! (HMASTER_0)))) <-> (HGRANT_0)));
+    ((HREADY) -> ((X (((true) && (! (HMASTER_1))) && (HMASTER_0))) <-> (HGRANT_1)));
+    ((HREADY) -> ((X (((true) && (HMASTER_1)) && (! (HMASTER_0)))) <-> (HGRANT_2)));
+    ((! (HREADY)) -> (((X (HMASTER_0)) <-> (HMASTER_0)) && ((X (HMASTER_1)) <-> (HMASTER_1))));
+  }
+}
+

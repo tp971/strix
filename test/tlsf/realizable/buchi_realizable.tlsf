@@ -1,0 +1,19 @@
+INFO {
+  TITLE:       "buchi realizable"
+  DESCRIPTION: "realizable formula with Buchi game"
+  SEMANTICS:   Mealy
+  TARGET:      Mealy
+}
+
+MAIN {
+  INPUTS {
+    r0;
+  }
+  OUTPUTS {
+    g0;
+  }
+  GUARANTEE {
+    (G ((r0) -> (F (g0))));
+  }
+}
+

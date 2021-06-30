@@ -1,0 +1,34 @@
+INFO {
+  TITLE:       "Amba AHB - Decomposed - Tinrc"
+  DESCRIPTION: "Tinrc component of the decomposed Amba AHB Arbiter"
+  SEMANTICS:   Mealy
+  TARGET:      Mealy
+}
+
+MAIN {
+  INPUTS {
+    busreq;
+    decide;
+    locked;
+    hready;
+    inrc;
+  }
+  OUTPUTS {
+    ready1;
+  }
+  ASSUME {
+    (! (decide));
+    (G (F (hready)));
+    (! (F (G (busreq))));
+    (G ((! (ready1)) -> (X (! (decide)))));
+  }
+  ASSERT {
+    ((decide) -> (X (X ((((inrc) && (locked)) -> ((! (ready1)) W ((hready) && (! (busreq))))) && ((! ((inrc) && (locked))) -> (ready1))))));
+    (((ready1) && (X (! (decide)))) -> (X (ready1)));
+    (((ready1) && (X (decide))) -> (X ((! (ready1)) && (X (! (ready1))))));
+  }
+  GUARANTEE {
+    (ready1);
+  }
+}
+

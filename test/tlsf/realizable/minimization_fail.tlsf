@@ -1,0 +1,23 @@
+INFO {
+  TITLE:       "Minimization test"
+  DESCRIPTION: "Test where minimization fails due to non-determinism"
+  SEMANTICS:   Mealy
+  TARGET:      Mealy
+}
+
+MAIN {
+  INPUTS {
+    i;
+  }
+  OUTPUTS {
+    o1;
+    o2;
+  }
+  ASSUME {
+    G (i -> ((X !i) && (X X !i) && (X X X !i)));
+  }
+  GUARANTEE {
+    G (i -> ((X !o2) && (X X !o1) && (X X X ((o1 && !o2) || (!o1 && o2)))));
+  }
+}
+

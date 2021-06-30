@@ -1,0 +1,22 @@
+INFO {
+  TITLE:       "non trivially realizable"
+  DESCRIPTION: "non-trivially realizable formula"
+  SEMANTICS:   Mealy
+  TARGET:      Mealy
+}
+
+MAIN {
+  INPUTS {
+    r0;
+  }
+  OUTPUTS {
+    g0;
+  }
+  ASSUME {
+    (G (F (r0)));
+  }
+  GUARANTEE {
+    ((r0) <-> ((g0) && (G (F (g0)))));
+  }
+}
+

@@ -1,0 +1,21 @@
+INFO {
+  TITLE:       "LTL -> DBA  -  Example 3"
+  DESCRIPTION: "One of the Acacia+ example files"
+  SEMANTICS:   Mealy
+  TARGET:      Mealy
+}
+
+MAIN {
+  INPUTS {
+    r;
+    q;
+    p;
+  }
+  OUTPUTS {
+    acc;
+  }
+  GUARANTEE {
+    ((F ((p) && (X ((q) && (X (F (r))))))) <-> (G (F (acc))));
+  }
+}
+

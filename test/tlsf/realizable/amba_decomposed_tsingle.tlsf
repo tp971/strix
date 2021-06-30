@@ -1,0 +1,32 @@
+INFO {
+  TITLE:       "Amba AHB - Decomposed - SINGLE"
+  DESCRIPTION: "SINGLE component of the decomposed Amba AHB Arbiter"
+  SEMANTICS:   Mealy
+  TARGET:      Mealy
+}
+
+MAIN {
+  INPUTS {
+    DECIDE;
+    LOCKED;
+    HREADY;
+    SINGLE;
+  }
+  OUTPUTS {
+    READY3;
+  }
+  ASSUME {
+    (! (DECIDE));
+    (G (F (HREADY)));
+    (G ((! (READY3)) -> (X (! (DECIDE)))));
+  }
+  ASSERT {
+    ((DECIDE) -> (X (X ((((SINGLE) && (LOCKED)) -> ((! (READY3)) U (((HREADY) && (! (READY3))) && (X (READY3))))) && ((! ((SINGLE) && (LOCKED))) -> (READY3))))));
+    (((READY3) && (X (! (DECIDE)))) -> (X (READY3)));
+    (((READY3) && (X (DECIDE))) -> (X ((! (READY3)) && (X (! (READY3))))));
+  }
+  GUARANTEE {
+    (READY3);
+  }
+}
+

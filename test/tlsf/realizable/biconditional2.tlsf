@@ -1,0 +1,18 @@
+INFO {
+  TITLE:       "biconditional 2"
+  DESCRIPTION: "formula with biconditional"
+  SEMANTICS:   Mealy
+  TARGET:      Mealy
+}
+
+MAIN {
+  INPUTS {
+    i;
+  }
+  OUTPUTS {
+    o;
+  }
+  GUARANTEE {
+    (i <-> (F o));
+  }
+}

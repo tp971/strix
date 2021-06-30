@@ -1,0 +1,25 @@
+INFO {
+  TITLE:       "Lily Demo V14"
+  DESCRIPTION: "One of the Lily demo files"
+  SEMANTICS:   Mealy
+  TARGET:      Mealy
+}
+
+MAIN {
+  INPUTS {
+    r1;
+    r0;
+  }
+  OUTPUTS {
+    g1;
+    g0;
+  }
+  ASSERT {
+    (! ((g0) && (g1)));
+  }
+  GUARANTEE {
+    ((G (F (r0))) -> (G (F (g0))));
+    ((G (F (r1))) -> (G (F (g1))));
+  }
+}
+
