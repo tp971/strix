@@ -638,7 +638,7 @@ void PGArena::constructArena(const bool parallel, const bool only_realizability,
                     else {
                         Edge edge(succ, color);
 
-                        if (!only_realizability) {
+                        if (true || !only_realizability) {
                             // add output to bdd
                             BDD output_bdd = output_letter.toBDD(manager_output_bdds, n_outputs);
 
@@ -705,7 +705,7 @@ void PGArena::constructArena(const bool parallel, const bool only_realizability,
                 sys_node = *result.first;
             }
 
-            if (!only_realizability) {
+            if (true || !only_realizability) {
                 // add input to bdd
                 BDD input_bdd = input_letter.toBDD(manager_input_bdds, n_inputs);
                 auto const result = env_successors.insert({ sys_node, input_bdd });
@@ -828,6 +828,14 @@ void PGArena::print(std::ostream& out, Player winner) const {
                 out << ",";
             }
         }
+        out << " \"env: ";
+        for (edge_id_t j = getEnvSuccsBegin(i); j != getEnvSuccsEnd(i); j++) {
+            out << getEnvInput(j);
+            if (j + 1 != getEnvSuccsEnd(i)) {
+                out << ", ";
+            }
+        }
+        out << "\"";
         out << ";" << std::endl;
     }
     out << std::endl;
@@ -839,7 +847,7 @@ void PGArena::print(std::ostream& out, Player winner) const {
             << parity_type << " ";
 
         if (getSysSuccsBegin(i) == getSysSuccsEnd(i)) {
-            out << std::setw(id_size) << bottom_node;
+            out << std::setw(id_size) << bottom_node << " \"sys: true\"";
         }
         else {
             for (edge_id_t j = getSysSuccsBegin(i); j != getSysSuccsEnd(i); j++) {
@@ -848,6 +856,14 @@ void PGArena::print(std::ostream& out, Player winner) const {
                     out << ",";
                 }
             }
+            out << " \"sys: ";
+            for (edge_id_t j = getSysSuccsBegin(i); j != getSysSuccsEnd(i); j++) {
+                out << getSysOutput(j);
+                if (j + 1 != getSysSuccsEnd(i)) {
+                    out << ", ";
+                }
+            }
+            out << "\"";
         }
         out << ";" << std::endl;
 
@@ -872,7 +888,7 @@ void PGArena::print(std::ostream& out, Player winner) const {
             else {
                 out << std::setw(id_size) << successor;
             }
-            out << ";" << std::endl;
+            out << " \"sys: true\";" << std::endl;
         }
     }
     out << std::endl;
